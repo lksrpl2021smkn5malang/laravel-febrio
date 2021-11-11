@@ -26,7 +26,7 @@ Route::get('/about', function () {
         "title" => "About",
         "name" => "Moch. Febrio DA",
         "email" => "7g26febrio@gmail.com",
-        "image" => "myimage.jpg"
+        "image" => "myimage.png"
     ]);
 });
 
