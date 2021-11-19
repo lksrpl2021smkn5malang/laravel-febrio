@@ -6139,3 +6139,28 @@ readers do not read off random characters that represent icons */
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.form-registration .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-registration input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-registration input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-registration input[type="password"] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-registration button {
+    margin-top: 10px;
+}
