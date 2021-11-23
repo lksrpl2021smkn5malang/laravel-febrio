@@ -5,7 +5,8 @@
             <h1 class="h2">My Posts</h1>
           </div>
 
-          <div class="table-responsive">
+          <div class="table-responsive col-lg-8">
+            <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Create a new post</a>
             <table class="table table-striped table-sm">
               <thead>
                 <tr>
@@ -16,12 +17,16 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($post as $p)
+                @foreach ($posts as $p)
                 <tr>
                   <td>{{ $loop->iteration }}</td>
                   <td>{{ $p->title }}</td>
-                  <td>{{ $p->category }}</td>
-                  <td></td>
+                  <td>{{ $p->category->name }}</td>
+                  <td>
+                    <a href="/dashboard/posts/{{ $p->slug }}" class="badge bg-info"><span data-feather="eye"></span></a>
+                    <a href="/dashboard/" class="badge bg-warning"><span data-feather="edit"></span></a>
+                    <a href="/dashboard/" class="badge bg-danger"><span data-feather="x-circle"></span></a>
+                  </td>
                 </tr>
                 @endforeach
               </tbody>
