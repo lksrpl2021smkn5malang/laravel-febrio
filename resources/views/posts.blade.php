@@ -21,7 +21,13 @@
 
     @if ($posts->count())
         <div class="card mb-3">
+            @if ($posts[0]->image)
+            <div style="max-height: 400px; overflow: hidden;">            
+              <img src="{{ asset('storage/' . $posts[0]->image) }}" alt="{{ $posts[0]->category->name }}" class="card-img-top">
+            </div>
+            @else
             <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->category->name }}" class="card-img-top" alt="{{ $posts[0]->category->name }}">
+            @endif
             <div class="card-body text-center">
                 <h3 class="card-title"><a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">{{ $posts[0]->title }}</a></h3>
                 <p><small class="text-muted">By <a href="/posts?author={{ $posts[0]->author->username }}" class="text-decoration-none">{{ $posts[0]->author->name }}</a> in <a href="/posts?category={{ $posts[0]->category->slug }}">{{ $posts[0]->category->name }}</a> {{ $posts[0]->created_at->diffForHumans() }}</small></p>
@@ -36,7 +42,11 @@
             <div class="col-md-4 mb-3">
                 <div class="card">
                   <div class="position-absolute bg-dark px-2 py-1 bg-opacity-75 rounded"><a href="/posts?category={{ $p->category->slug }}" class="text-white text-decoration-none">{{ $p->category->name }}</a></div>
-                  <img src="https://source.unsplash.com/500x400?{{ $p->category->name }}" class="card-img-top" alt="{{ $p->category->name }}">
+                  @if ($p->image)         
+                    <img src="{{ asset('storage/' . $p->image) }}" alt="{{ $p->category->name }}" class="card-img-top">
+                  @else
+                    <img src="https://source.unsplash.com/500x400?{{ $p->category->name }}" class="card-img-top" alt="{{ $p->category->name }}">
+                  @endif
                   <div class="card-body">
                     <h5 class="card-title">{{ $p->title }}</h5>
                     <p><small class="text-muted">By <a href="/posts?author={{ $posts[0]->author->username }}" class="text-decoration-none">{{ $p->author->name }}</a> {{ $p->created_at->diffForHumans() }}</small></p>

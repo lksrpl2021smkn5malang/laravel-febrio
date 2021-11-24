@@ -2,16 +2,17 @@
 
 @section('container')
 		<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Create a New Post</h1>
+            <h1 class="h2">Edit Post</h1>
         </div>
 
-		<div class="col-lg-8">
-         	<form action="/dashboard/posts" method="post" class="mb-5" enctype="multipart/form-data">
+		<div class="col-lg-8">	
+         	<form action="/dashboard/posts/{{ $p->slug }}" method="post" class="mb-5">
+         	  @method('put')
          	  @csrf
 			  <div class="row mb-3">
 			  	<div class="col">	
 				    <label for="title" class="form-label">Title</label>
-				    <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" value="{{ old('title') }}" required autofocus>
+				    <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" value="{{ old('title', $p->title) }}" required autofocus>
 				    @error('title')
 						<div class="invalid-feedback">
 							{{ $message }}
@@ -20,14 +21,14 @@
 			  	</div>
 			  	<div class="col">
 			  		<label for="slug" class="form-label">Slug</label>
-			    	<input type="text" class="form-control" name="slug" id="slug" readonly>
+			    	<input type="text" class="form-control" name="slug" id="slug" value="{{ $p->slug }}" readonly>
 			  	</div>
 			  </div>
 			  <div class="mb-3">
 			    <label for="category" class="form-label">Category</label>
 				<select class="form-select" name="category_id" id="category">
 				  @foreach ($categories as $c)
-				  	@if(old('category_id') == $c->id)
+				  	@if(old('category_id', $p->category_id) == $c->id)
 				  	  <option value="{{ $c->id }}" selected>{{ $c->name }}</option>
 				  	@else
 				  	  <option value="{{ $c->id }}">{{ $c->name }}</option>
@@ -36,17 +37,8 @@
 				</select>
 			  </div>
 			  <div class="mb-3">
-			    <label for="image" class="form-label">Image</label>
-			    <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image">
-			    @error('image')
-					<div class="invalid-feedback">
-						{{ $message }}
-      				</div>
-			    @enderror
-			  </div>
-			  <div class="mb-3">
 			    <label for="body" class="form-label">Body</label>
-			    <input id="body" type="hidden" name="body" value="{{ old('body') }}">
+			    <input id="body" type="hidden" name="body" value="{{ old('body', $p->body) }}">
   				<trix-editor input="body"></trix-editor>
   				@error('body')
   					<p class="text-danger">{{ $message }}</p>

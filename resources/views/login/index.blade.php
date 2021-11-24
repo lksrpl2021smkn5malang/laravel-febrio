@@ -16,6 +16,7 @@
 				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
 			@endif
+			
 			<main class="form-signin my-5">
 			  <h1 class="h3 mb-3 fw-normal text-center">Log In to Feb's Blog</h1>
 			  <form action="/login" method="post">

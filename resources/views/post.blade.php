@@ -6,7 +6,13 @@
             <div class="col-md-8">
                 <h2 class="mb-3">{{ $p->title }}</h2>
                 <p>By <a href="/posts?author={{ $p->author->username }}" class="text-decoration-none">{{ $p->author->name }}</a> in  <a href="/posts?category={{ $p->category->slug }}" class="text-decoration-none">{{ $p->category->name }}</a></p>
-                <img src="https://source.unsplash.com/1200x400?{{ $p->category->name }}" alt="{{ $p->category->name }}" class="img-fluid">
+                @if ($p->image)
+                <div style="max-height: 400px; overflow: hidden;">
+                  <img src="{{ asset('storage/' . $p->image) }}" alt="{{ $p->category->name }}" class="img-fluid">
+                </div>
+                @else
+                  <img src="https://source.unsplash.com/1200x400?{{ $p->category->name }}" alt="{{ $p->category->name }}" class="img-fluid">
+                @endif
 
                 <article class="my-3 fs-5">
                     {!! $p->body !!}
