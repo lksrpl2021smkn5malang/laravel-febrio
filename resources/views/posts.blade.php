@@ -49,7 +49,7 @@
                   @endif
                   <div class="card-body">
                     <h5 class="card-title">{{ $p->title }}</h5>
-                    <p><small class="text-muted">By <a href="/posts?author={{ $posts[0]->author->username }}" class="text-decoration-none">{{ $p->author->name }}</a> {{ $p->created_at->diffForHumans() }}</small></p>
+                    <p><small class="text-muted">By <a href="/posts?author={{ $p->author->username }}" class="text-decoration-none">{{ $p->author->name }}</a> {{ $p->created_at->diffForHumans() }}</small></p>
                     <p class="card-text">{{ $p->excerpt }}</p>
                     <a href="/posts/{{ $p->slug }}" class="btn btn-primary">Read more</a>
                   </div>
